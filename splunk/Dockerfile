@@ -32,6 +32,7 @@ RUN apt-get update -q && \
 RUN wget -O ${SPLUNK_FILENAME} https://download.splunk.com/products/${SPLUNK_PRODUCT}/releases/${SPLUNK_VERSION}/linux/${SPLUNK_FILENAME}
 
 RUN dpkg -i /${SPLUNK_FILENAME}
+RUN rm /${SPLUNK_FILENAME}
 
 ### Configure Service Startup
 COPY rc.local /etc/rc.local
