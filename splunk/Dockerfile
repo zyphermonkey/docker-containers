@@ -40,7 +40,7 @@ RUN chmod a+x /etc/rc.local && \
     
 RUN printf "\nOPTIMISTIC_ABOUT_FILE_LOCKING = 1\n" >> $SPLUNK_HOME/etc/splunk-launch.conf
 
-EXPOSE 8000 8089 9997 514
+EXPOSE 8000 8088 8089 9997 514 
 
 VOLUME ["/opt/splunk/var", "/data", "/license"]
 
