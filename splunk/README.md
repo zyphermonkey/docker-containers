@@ -7,7 +7,7 @@ By default, the 60-day enterprise free trial is installed, but this can be chang
 ## Usage
 
 ```
-docker run -d -p 8000:8000 -p 8089:8089 -p 9997:9997 -p 514:514 -v /mnt/user/appdata/splunk:/opt/splunk/var --name splunk zyphermonkey/splunk
+docker run -d -p 8000:8000 -p 8089:8089 -p 9997:9997 -p 514:514 -v /mnt/user/appdata/splunk:/opt/splunk/var -v /mnt/user/appdata/splunk:/opt/splunk/etc --name splunk zyphermonkey/splunk
 ```
 
 Once the container is running, browse to: `http://<host>:8000` to complete the setup.
