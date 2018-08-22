@@ -43,7 +43,7 @@ RUN printf "\nOPTIMISTIC_ABOUT_FILE_LOCKING = 1\n" >> $SPLUNK_HOME/etc/splunk-la
 
 EXPOSE 8000 8088 8089 9997 514 
 
-VOLUME ["/opt/splunk/var", "/data", "/license"]
+VOLUME [ "/opt/splunk/etc", "/opt/splunk/var", "/data", "/license" ]
 
 ### END
 ### To make this a persistent container, you must map /opt/splunk/var of this container
