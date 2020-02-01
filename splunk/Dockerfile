@@ -32,12 +32,12 @@ RUN apt-get update -q && \
 #RUN wget -O splunk-6.5.3-36937ad027d4-linux-2.6-amd64.deb "https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=6.5.3&product=splunk&filename=splunk-6.5.3-36937ad027d4-linux-2.6-amd64.deb&wget=true"
 RUN wget -O ${SPLUNK_FILENAME} https://download.splunk.com/products/${SPLUNK_PRODUCT}/releases/${SPLUNK_VERSION}/linux/${SPLUNK_FILENAME} && \
     dpkg -i /${SPLUNK_FILENAME} && \
-    rm /${SPLUNK_FILENAME}
+    rm /${SPLUNK_FILENAME} && \
+    chown -R nobody:users /opt/splunk
 
 ### Configure Service Startup
 COPY rc.local /etc/rc.local
-RUN chmod a+x /etc/rc.local && \
-    chown -R nobody:users /opt/splunk
+RUN chmod a+x /etc/rc.local
     
 RUN printf "\nOPTIMISTIC_ABOUT_FILE_LOCKING = 1\n" >> $SPLUNK_HOME/etc/splunk-launch.conf
 
