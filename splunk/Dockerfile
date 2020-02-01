@@ -26,13 +26,13 @@ RUN usermod -u 99 nobody && \
 RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 RUN apt-get update -q && \
-	apt-get install -y wget
+    apt-get install --no-install-recommends -y wget && \
+    rm -rf /var/lib/apt/lists/*
 	
 #RUN wget -O splunk-6.5.3-36937ad027d4-linux-2.6-amd64.deb "https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=6.5.3&product=splunk&filename=splunk-6.5.3-36937ad027d4-linux-2.6-amd64.deb&wget=true"
-RUN wget -O ${SPLUNK_FILENAME} https://download.splunk.com/products/${SPLUNK_PRODUCT}/releases/${SPLUNK_VERSION}/linux/${SPLUNK_FILENAME}
-
-RUN dpkg -i /${SPLUNK_FILENAME}
-RUN rm /${SPLUNK_FILENAME}
+RUN wget -O ${SPLUNK_FILENAME} https://download.splunk.com/products/${SPLUNK_PRODUCT}/releases/${SPLUNK_VERSION}/linux/${SPLUNK_FILENAME} && \
+    dpkg -i /${SPLUNK_FILENAME} && \
+    rm /${SPLUNK_FILENAME}
 
 ### Configure Service Startup
 COPY rc.local /etc/rc.local
